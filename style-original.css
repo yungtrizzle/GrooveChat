@@ -1,0 +1,119 @@
+﻿body{
+    margin: 0;
+    padding: 0;
+    font-size: 15px;
+      
+}
+
+.navbar {
+    width: 100%;  /* full width */
+    height: 45px; /* change it to desired width */
+    background-color: #333; /* change to desired color */
+}
+/* Create a style for the first level items */
+
+
+
+.navbar > a {
+    color: #aaa;
+    display: inline-block;
+    line-height: 2em;
+    padding: 0.5em 0.5em;
+    text-decoration: none;
+    text-align:top;
+}
+
+
+.brand-logo{
+	display: inline-block;
+    vertical-align: middle;
+    width: 35px;
+    height: 35px;
+}
+
+.padd{
+    width:30px;
+}
+
+.padd2{
+    width:500px;
+}
+
+#search, 
+#submit {
+    display:inline-block;
+}
+
+#search {
+    padding: 1px 1px;
+    height: 23px;
+    width: 180px;
+    border: 1px solid #a4c3ca;
+    font: normal 13px 'trebuchet MS', arial, helvetica;
+    background: #f1f1f1;
+    border-radius: 10px 3px 3px 10px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25) inset, 0 1px 0 rgba(255, 255, 255, 1); 
+}
+
+/* ----------------------- */
+
+#submit
+{       
+    background-color: #aaa;
+    background-image: linear-gradient(#95d788, #6cbb6b);
+    border-radius: 3px 50px 50px 3px;    
+    border-width: 1px;
+    border-style: solid;
+    border-color: #7eba7c #578e57 #447d43;
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0.3), 
+                0 1px 0 rgba(255, 255, 255, 0.3) inset;
+    height: 27.5px;
+/*    margin: 0 0 0 3px;*/
+    padding: 0;
+    width: 90px;
+    cursor: pointer;
+    font: bold 14px Arial, Helvetica;
+    color: #23441e;    
+    text-shadow: 0 1px 0 rgba(255,255,255,0.5);
+}
+
+#submit:hover {       
+    background-color: #aaa;
+    background-image: linear-gradient(#6cbb6b, #95d788);
+}   
+
+#submit:active {       
+    background: #aaa;
+    outline: none;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5) inset;        
+}
+
+#submit::-moz-focus-inner {
+       border: 0;  /* Small centering fix for Firefox */
+}
+
+
+.landing{
+    height: 650px;
+    display: block;
+    position: relative;
+}
+
+.landing::after{
+    content: "";
+    background-image:
+    linear-gradient(
+      rgba(149, 215, 136, 0.6), 
+      rgba(149, 215, 136, 0.6)
+    ),
+    url("Assets/musicheadphonesgroove.png");
+    
+    background-position:center center;
+    background-attachment:fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: -1;  
+}
