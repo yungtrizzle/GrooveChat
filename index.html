@@ -7,8 +7,10 @@
 <title>GrooveChat</title>
 <link rel="stylesheet" href="style-original.css">
 <link rel="icon" href="Assets/musicheadphonesgroove.png">
+<script src=JS/modernizr-custom.js></script>
 <script src="JS/jquery-3.1.1.min.js"></script>
 <script src="JS/landingview.js"></script>
+<script src="JS/chat.js"></script>
 </head>
 
 <body>
@@ -31,7 +33,7 @@
     
     <div class="landing">
     
-    <header>
+    <header id="landhead">
             <h2> Get Started!<h2>
            <button type="button" class="smit" id="startbtn">Start Here</button>
     </header>
@@ -45,7 +47,7 @@
 			</ul>
 
 			<div id="cd-login"> <!-- log in form -->
-				<form class="cd-form">
+				<form class="cd-form" method="post" action="#">
 					<p class="fieldset">
 						<label class="image-replace cd-email" for="signin-email">E-mail</label>
 						<input class="full-width has-padding has-border" id="signin-email" type="email" placeholder="E-mail">
@@ -74,7 +76,7 @@
 			</div> <!-- cd-login -->
 
 			<div id="cd-signup"> <!-- sign up form -->
-				<form class="cd-form">
+				<form class="cd-form" method="post" action"#">
 					<p class="fieldset">
 						<label class="image-replace cd-username" for="signup-username">Username</label>
 						<input class="full-width has-padding has-border" id="signup-username" type="text" placeholder="Username">
@@ -110,7 +112,7 @@
 			<div id="cd-reset-password"> <!-- reset password form -->
 				<p class="cd-form-message">Lost your password? Please enter your email address. You will receive a link to create a new password.</p>
 
-				<form class="cd-form">
+				<form class="cd-form" method="post" action="#">
 					<p class="fieldset">
 						<label class="image-replace cd-email" for="reset-email">E-mail</label>
 						<input class="full-width has-padding has-border" id="reset-email" type="email" placeholder="E-mail">
@@ -127,18 +129,50 @@
 			<a href="#0" class="cd-close-form">Close</a>
 		</div> <!-- cd-user-modal-container -->
 	</div> <!-- cd-user-modal -->
+        <!--get started landing ends here-->
 
+        <!--chat area-->
+          <div class="wrapper">
+    <div class="container">
+        <div class="left">
+           <div class="top"><span>My Rooms</span></div>
+            <ul class="people">
+                <li class="person" data-chat="active-chat">
+                    <img src="http://s13.postimg.org/ih41k9tqr/img1.jpg" alt="" />
+                    <span class="name">Thomas Bangalter</span>
+                    <span class="time">2:09 PM</span>
+                    <span class="preview">I was wondering...</span>
+                </li>
+            </ul>
+            
+            <div class="bottom" id="music">new music</div>
+        </div>
+        
+        
+          <div class="right">
+            <div class="top"><span>To: <span class="name">Dog Woofson</span></span></div>
+            <div class="chat" data-chat="active-chat">
+                <div class="conversation-start">
+                    <span>Today, 6:48 AM</span>
+                </div>
+            </div>
+        
+         <div class="write"><!--Textbox for messages-->
+                <form action="" id="send">
+                <a class="write-link smiley"></a>
+                <input type="text" id="mesg" autocomplete="off"/><input type="submit" value="" class="write-link send" ></input>
+                </form>
+            </div>
+        
+        
+        
+        
+        </div>
+        </div>
     
     
-    
-        </div><!--landing ends here-->
-
-  
-  
-  
- 
-    
-
+        </div>
+      
 </body>
 
 </html>
