@@ -18,13 +18,21 @@ jQuery(document).ready(function($){
 	//open sign-up form
 	mainNav.on('click', '.cd-signup', signup_selected);
 	//open login-form form
-	mainNav.on('click', '.cd-signin', login_selected);
+	mainNav.on('click', '.cd-signin', login_selected); 
         
         $('#startbtn').click(function(){
         login_selected();
             
         });
        
+       $( ".relod" ).click(function() {
+    location.reload(true);
+    });
+       
+        $( ".cd-signin" ).click(function() {
+    login_selected();
+    });
+
 
 	//close modal
 	formModal.on('click', function(event){
@@ -94,17 +102,99 @@ jQuery(document).ready(function($){
 		formForgotPassword.addClass('is-selected');
 	}
 
-	/* //REMOVE THIS - it's just to show error messages or use as form handling
+	//login/register form handling
 	formLogin.find('input[type="submit"]').on('click', function(event){
+            
+            
+            var user = $('#signin-email').val();
+            var passwd = $('#signin-password').val();
+            
+            if(user==''||passwd==''){
 		event.preventDefault();
-		formLogin.find('input[type="email"]').toggleClass('has-error').next('span').toggleClass('is-visible');
+                formLogin.find('input[type="text"]').toggleClass('has-error').next('span').toggleClass('is-visible');
+            
+            }else{
+                
+                var data = {username:user, key:passwd};
+                
+                var ath = JSON.stringify(data);
+               
+                
+                $.ajax({
+                    
+                    url:"/api/login",
+                    
+                    data: ath,
+                    
+                    type:"POST",
+                    
+                    dataType:"json",
+                })
+                
+                 .done(function(json){
+                     createCookie("Groovedin",json.user,60);//create a cookie
+                     createCookie("GrooveID", json.id, 60);
+                     createCookie("Ticket", String(json.ticket), 0.1);
+                      $('.wrapper').show();
+                    
+                })
+                
+                .fail(function(json){
+                  event.preventDefault();
+                formLogin.find('input[type="text"]').toggleClass('has-error').next('span').toggleClass('is-visible');
+                });
+                
+            }
+            
 	});
+    
+        
 	formSignup.find('input[type="submit"]').on('click', function(event){
+            
+            var user = $('#signup-username').val();
+            var mail = $('#signup-email').val();
+            var passwd = $('#signup-password').val();
+            
+            if(user==''||passwd==''||mail==''){
+		event.preventDefault();
+                formSignup.find('input[type="email"]').toggleClass('has-error').next('span').toggleClass('is-visible');
+                formLogin.find('input[type="text"]').toggleClass('has-error').next('span').toggleClass('is-visible');
+            
+            }else{
+            
+                  var data = {email:mail, username:user, key:passwd};
+                
+                  var ath = JSON.stringify(data);
+                   
+                
+                $.ajax({
+                    
+                    url:"/api/register",
+                    
+                    data: ath,
+                    
+                    type:"POST",
+                    
+                    dataType:"json",
+                })
+                
+                 .done(function(json){
+                    //done work
+                })
+            
+               .fail(function(json){
 		event.preventDefault();
 		formSignup.find('input[type="email"]').toggleClass('has-error').next('span').toggleClass('is-visible');
-	});*/
+                formLogin.find('input[type="text"]').toggleClass('has-error').next('span').toggleClass('is-visible');
+                                                   
+               });
+            }
+        
+	});
 
-
+        
+        
+        
 	//IE9 placeholder fallback
 	//credits http://www.hagenburger.net/BLOG/HTML5-Input-Placeholder-Fix-With-jQuery.html
 	if(!Modernizr.input.placeholder){
@@ -149,3 +239,14 @@ jQuery.fn.putCursorAtEnd = function() {
     	}
 	});
 };
+
+function createCookie(name,value,days) {
+    if (days) {
+        var date = new Date();
+        date.setTime(date.getTime()+(days*24*60*60*1000));
+        var expires = "; expires="+date.toGMTString();
+    }
+    else var expires = "";
+    document.cookie = name+"="+value+expires+"; path=/";
+}
+
