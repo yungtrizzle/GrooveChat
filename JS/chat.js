@@ -4,11 +4,17 @@ jQuery(document).ready(function($){
     
    if (document.cookie.indexOf('Groovedin') > -1 ) {
 //setup page for user
-     $('.wrapper').show();
     
     var tik = readCookie('Ticket');
+    var use = readCookie('Groovedin');
     
     conn = new WebSocket("ws://localhost:8080/api/ws?ticket="+tik);
+    
+     //$('.right .top .name').text('Desc:');
+       
+      $('#inout').text(use);
+     $('.wrapper').show();
+   
 
 conn.onmessage=function(event){
     
@@ -26,15 +32,10 @@ conn.onmessage=function(event){
 
 
 conn.onclose=function(event){
-    
-    $('<div/>', {
-    'class': 'conversation-start',
-    'html': $('<span>', {
-        text:'Connection Closed'
-    }),
-    
-    }).appendTo('.chat');
-   
+ 
+ var tik = readCookie('Ticket');
+ conn = new WebSocket("ws://localhost:8080/api/ws?ticket="+tik);
+ 
 }; 
 
 $('#send').on('submit',function(event){
@@ -45,17 +46,32 @@ $('#send').on('submit',function(event){
     'class': 'bubble me',
     text: msg
     }).appendTo('.chat');
-    
+
     conn.send(msg);
 
-      $('#mesg').val('');
-      console.log(msg);
-      //send to server
+    $('#mesg').val('');
+    //scrolling mechanism here
+    $container = $('.chat');
+    $container[0].scrollTop = $container[0].scrollHeight;  
+    
       
 });
 
   }
         });
+
+
+
+function createCookie(name,value,days) {
+    if (days) {
+        var date = new Date();
+        date.setTime(date.getTime()+(days*24*60*60*1000));
+        var expires = "; expires="+date.toGMTString();
+    }
+    else var expires = "";
+    document.cookie = name+"="+value+expires+"; path=/";
+}
+
 
 function readCookie(name) {
     var nameEQ = name + "=";

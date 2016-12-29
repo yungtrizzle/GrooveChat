@@ -636,31 +636,42 @@ xsigin/signup popup */
 
 .container .right .chat {
   position: relative;
-  display: block;
-  overflow: hidden;
-  padding: 0 35px 92px;
+  display:block;
+  overflow-y:auto;
+  padding: 0 35px 83px;
   border-width: 1px 1px 1px 0;
-  border-style: solid;
+  /*border-style: solid;*/
   border-color: #e6e6e6;
-  height: calc(74.5% - 0px);
-  width:97.5%;
+  height: calc(62% - 10px);
+  width:97.5%;      /* below is prolly not working*/
+   flex-direction:column;
+   justify-content: flex-end;
   -webkit-box-pack: end;
   -webkit-justify-content: flex-end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
+  -ms-flex-pack: end;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
   -webkit-flex-direction: column;
       -ms-flex-direction: column;
-          flex-direction: column;
+         
 }
 
 .container .right .chat.active-chat {
-  display: block;
+  display: flex;
+  overflow-y: auto;
+  flex: 1, 1;
+   justify-content: flex-end;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+  -ms-flex-pack: end;
+  flex-direction: column;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
-  display: flex;
+ 
+   -webkit-flex: 1 1;
 }
 .container .right .chat.active-chat .bubble {
   -webkit-transition-timing-function: cubic-bezier(0.4, -0.04, 1, 1);
@@ -682,7 +693,7 @@ xsigin/signup popup */
 .container .right .write input {
   font-size: 16px;
   float: left;
-  width: 347px;
+  width: 367px;
   height: 40px;
   padding: 0 10px;
   color: #1a1a1a;

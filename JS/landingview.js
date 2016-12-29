@@ -133,9 +133,8 @@ jQuery(document).ready(function($){
                 
                  .done(function(json){
                      createCookie("Groovedin",json.user,60);//create a cookie
-                     createCookie("GrooveID", json.id, 60);
-                     createCookie("Ticket", String(json.ticket), 0.1);
-                      $('.wrapper').show();
+                     createCookie("Ticket", String(json.ticket), 60);
+                      console.log(json.id);
                     
                 })
                 
